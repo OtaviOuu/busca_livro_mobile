@@ -34,7 +34,9 @@ export default function Achados() {
   return (
     <View style={styles.container}>
       <Text>Achados</Text>
-      <ProductList books={books ?? []} />
+      <View style={styles.listContainer}>
+        <ProductList books={books ?? []} />
+      </View>
     </View>
   );
 }
@@ -42,6 +44,10 @@ export default function Achados() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  listContainer: {
+    padding: 20,
+    alignItems: "center",
   },
   item: {
     backgroundColor: "#f9c2ff",
