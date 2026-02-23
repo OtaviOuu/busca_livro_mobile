@@ -34,6 +34,7 @@ export default function Achados() {
     queryKey: ["achados_books"],
     queryFn: fetchAchadosBooks,
     retry: false,
+    refetchInterval: 2000,
   });
 
   if (isPending) return <Text>Loading...</Text>;
