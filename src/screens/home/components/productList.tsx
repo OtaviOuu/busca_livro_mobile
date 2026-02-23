@@ -6,8 +6,17 @@ export default function ProductList({ books }: { books: Book[] }) {
   return (
     <FlatList
       data={books}
+      numColumns={3}
+      showsVerticalScrollIndicator={false}
+      columnWrapperStyle={styles.row}
       renderItem={({ item }) => <ProductCard book={item} />}
       keyExtractor={(item) => item.id}
     />
   );
 }
+const styles = StyleSheet.create({
+  row: {
+    justifyContent: "space-around",
+    padding: 16,
+  },
+});

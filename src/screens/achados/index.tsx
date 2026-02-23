@@ -3,33 +3,29 @@ import ProductList from "./components/productList";
 import { Book } from "@/src/types/types";
 import { useQuery } from "@tanstack/react-query";
 
-const fetchUniversity = async (): Promise<Book[]> => {
-  const books = [
-    {
-      id: "1",
-      title: "Livro 1",
-      price: 10,
-    },
-    {
-      id: "2",
-      title: "Livro 2",
-      price: 20,
-    },
-  ];
+const fetchBooks = async (): Promise<Book[]> => {
+  const response = await fetch(
+    "https://ships-regulated-regardless-nova.trycloudflare.com/api/json/books?page%5Blimit%5D=25&fields%5Bbook%5D=id%2Ctitle%2Cprice%2Cimage_url%2Curl%2Cinserted_at%2Cupdated_at",
+  );
 
-  return books;
+  const data = await response.json();
+  console.log(data);
+  return data.data as Book[];
 };
 
 export default function Achados() {
   const {
     data: books,
-    isLoading,
-    isError,
+    isPending,
+    error,
   } = useQuery<Book[]>({
     queryKey: ["books"],
-    queryFn: fetchUniversity,
+    queryFn: fetchBooks,
     retry: false,
   });
+
+  if (isPending) return <Text>Loading...</Text>;
+  if (error) return <Text>Oops!</Text>;
 
   return (
     <View style={styles.container}>

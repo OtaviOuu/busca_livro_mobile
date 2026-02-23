@@ -4,38 +4,26 @@ import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function ProductCard({ book }: { book: Book }) {
-  const formattedPrice = book.price.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  });
-
   return (
     <Pressable
       style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
     >
-      {/* Image aq*/}
       <View style={styles.imageContainer}>
-        {book.imageUrl ? (
-          <Image
-            source={{ uri: book.imageUrl }}
-            style={styles.image}
-            contentFit="cover"
-            transition={200}
-          />
-        ) : (
-          <View style={styles.imageFallback}>
-            <Ionicons name="book-outline" size={44} color="#A78BFA" />
-          </View>
-        )}
+        <Image
+          source={book.attributes.image_url}
+          style={styles.image}
+          contentFit="cover"
+          transition={200}
+        />
       </View>
 
       <View style={styles.content}>
         <Text style={styles.title} numberOfLines={2}>
-          {book.title}
+          {book.attributes.title}
         </Text>
 
         <View style={styles.priceRow}>
-          <Text style={styles.price}>{formattedPrice}</Text>
+          <Text style={styles.price}>{book.attributes.price.amount}</Text>
         </View>
       </View>
     </Pressable>
