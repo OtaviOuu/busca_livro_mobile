@@ -10,7 +10,7 @@ export default function RootLayout() {
       <SafeAreaProvider>
         <Tabs>
           <Tabs.Screen
-            name="index"
+            name="(tabs)/index"
             options={{
               headerShown: false,
               headerTitle: "Home",
@@ -18,7 +18,7 @@ export default function RootLayout() {
             }}
           />
           <Tabs.Screen
-            name="achados"
+            name="(tabs)/achados"
             options={{
               headerShown: false,
               headerTitle: "Achados",
@@ -26,7 +26,7 @@ export default function RootLayout() {
             }}
           />
           <Tabs.Screen
-            name="perfil"
+            name="(tabs)/perfil"
             options={{
               headerShown: false,
               headerTitle: "Perfil",
