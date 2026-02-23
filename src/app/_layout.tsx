@@ -25,6 +25,14 @@ export default function RootLayout() {
               tabBarLabel: "Achados",
             }}
           />
+          <Tabs.Screen
+            name="perfil"
+            options={{
+              headerShown: false,
+              headerTitle: "Perfil",
+              tabBarLabel: "Perfil",
+            }}
+          />
         </Tabs>
       </SafeAreaProvider>
     </QueryClientProvider>

@@ -8,6 +8,7 @@ export default function ProductCard({ book }: { book: Book }) {
     <Pressable
       style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
     >
+      {/* Image aq*/}
       <View style={styles.imageContainer}>
         <Image
           source={book.attributes.image_url}
@@ -32,7 +33,7 @@ export default function ProductCard({ book }: { book: Book }) {
 
 const styles = StyleSheet.create({
   card: {
-    width: 172,
+    width: 140,
     backgroundColor: "#fff",
     borderRadius: 16,
     margin: 8,
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
   // Content
   content: {
     padding: 12,
-    gap: 8,
+    gap: 4,
   },
   title: {
     fontSize: 13,
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
   priceRow: {
     flexDirection: "row",
     alignItems: "baseline",
-    gap: 4,
+    gap: 3,
   },
   price: {
     fontSize: 16,

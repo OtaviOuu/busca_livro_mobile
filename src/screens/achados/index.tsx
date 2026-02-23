@@ -2,15 +2,27 @@ import { View, Text, StyleSheet } from "react-native";
 import ProductList from "./components/productList";
 import { Book } from "@/src/types/types";
 import { useQuery } from "@tanstack/react-query";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const fetchBooks = async (): Promise<Book[]> => {
+const fetchAchadosBooks = async (): Promise<Book[]> => {
+  const bearer = await AsyncStorage.getItem("authToken");
+
+  const headers = {
+    "Content-Type": "application/vnd.api+json",
+    Authorization: `Bearer ${bearer}`,
+  };
+
   const response = await fetch(
-    "https://ships-regulated-regardless-nova.trycloudflare.com/api/json/books?page%5Blimit%5D=25&fields%5Bbook%5D=id%2Ctitle%2Cprice%2Cimage_url%2Curl%2Cinserted_at%2Cupdated_at",
+    "https://ships-regulated-regardless-nova.trycloudflare.com/api/json/achados?page%5Blimit%5D=25&include=book&fields%5Bbook_user%5D=id%2Cbook_id",
+    {
+      method: "GET",
+      headers,
+    },
   );
 
   const data = await response.json();
   console.log(data);
-  return data.data as Book[];
+  return data.included as Book[];
 };
 
 export default function Achados() {
@@ -19,8 +31,8 @@ export default function Achados() {
     isPending,
     error,
   } = useQuery<Book[]>({
-    queryKey: ["books"],
-    queryFn: fetchBooks,
+    queryKey: ["achados_books"],
+    queryFn: fetchAchadosBooks,
     retry: false,
   });
 

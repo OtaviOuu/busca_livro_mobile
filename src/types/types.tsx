@@ -9,3 +9,16 @@ export interface Book {
     image_url: string;
   };
 }
+
+export interface User {
+  id: string;
+  attributes: {
+    email: string;
+  };
+}
+
+export interface loginResponse {
+  meta: {
+    token: string;
+  };
+}
