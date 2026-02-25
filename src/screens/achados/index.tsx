@@ -13,7 +13,7 @@ const fetchAchadosBooks = async (): Promise<Book[]> => {
   };
 
   const response = await fetch(
-    "https://ships-regulated-regardless-nova.trycloudflare.com/api/json/achados?page%5Blimit%5D=25&include=book&fields%5Bbook_user%5D=id%2Cbook_id",
+    "https://initiatives-episode-deaths-driven.trycloudflare.com/api/json/achados?page%5Blimit%5D=25&include=book&fields%5Bbook_user%5D=id%2Cbook_id",
     {
       method: "GET",
       headers,
@@ -21,7 +21,6 @@ const fetchAchadosBooks = async (): Promise<Book[]> => {
   );
 
   const data = await response.json();
-  console.log(data);
   return data.included as Book[];
 };
 

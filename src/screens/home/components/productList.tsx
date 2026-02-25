@@ -1,8 +1,18 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, RefreshControl, StyleSheet, Text, View } from "react-native";
 import ProductCard from "./productCard";
 import { Book } from "@/src/types/types";
 
-export default function ProductList({ books }: { books: Book[] }) {
+interface ProductListProps {
+  books: Book[];
+  isRefreshing: boolean;
+  onRefresh: () => void;
+}
+
+export default function ProductList({
+  books,
+  isRefreshing,
+  onRefresh,
+}: ProductListProps) {
   return (
     <FlatList
       data={books}
@@ -10,6 +20,9 @@ export default function ProductList({ books }: { books: Book[] }) {
       showsVerticalScrollIndicator={false}
       columnWrapperStyle={styles.row}
       renderItem={({ item }) => <ProductCard book={item} />}
+      refreshControl={
+        <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
+      }
       keyExtractor={(item) => item.id}
     />
   );
