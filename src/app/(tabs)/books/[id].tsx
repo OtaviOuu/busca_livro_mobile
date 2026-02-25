@@ -2,7 +2,7 @@ import BookDetails from "@/src/screens/bookDetails";
 import { useLocalSearchParams } from "expo-router";
 
 export default function BookDetailsScreen() {
-  const { book_id } = useLocalSearchParams<{ book_id: string }>();
+  const { id } = useLocalSearchParams<{ id: string }>();
 
-  return <BookDetails book_id={book_id} />;
+  return <BookDetails book_id={id} />;
 }
