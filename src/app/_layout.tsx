@@ -10,7 +10,7 @@ export default function RootLayout() {
       <SafeAreaProvider>
         <Tabs>
           <Tabs.Screen
-            name="(tabs)/index"
+            name="(tabs)/books"
             options={{
               headerShown: false,
               headerTitle: "Home",

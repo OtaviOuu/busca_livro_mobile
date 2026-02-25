@@ -1,14 +1,17 @@
 import { Book } from "@/src/types/types";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
-import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 
 export default function ProductCard({ book }: { book: Book }) {
+  const router = useRouter();
+
   return (
-    <Pressable
-      style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
+    <TouchableOpacity
+      style={styles.card}
+      activeOpacity={0.8}
+      onPress={() => router.push(`/books/${book.id}`)}
     >
-      {/* Image aq*/}
       <View style={styles.imageContainer}>
         <Image
           source={book.attributes.image_url}
@@ -27,10 +30,9 @@ export default function ProductCard({ book }: { book: Book }) {
           <Text style={styles.price}>{book.attributes.price.amount}</Text>
         </View>
       </View>
-    </Pressable>
+    </TouchableOpacity>
   );
 }
-
 const styles = StyleSheet.create({
   card: {
     width: 140,
@@ -49,7 +51,6 @@ const styles = StyleSheet.create({
     transform: [{ scale: 0.97 }],
   },
 
-  // Image
   imageContainer: {
     width: "100%",
     height: 160,
@@ -82,7 +83,6 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
 
-  // Content
   content: {
     padding: 12,
     gap: 4,
