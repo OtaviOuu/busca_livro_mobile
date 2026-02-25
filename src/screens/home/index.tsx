@@ -11,7 +11,6 @@ export default function Home() {
 
   return (
     <SafeAreaView>
-      <Text>Titulo</Text>
       <View style={styles.listContainer}>
         <ProductList
           books={books ?? []}
