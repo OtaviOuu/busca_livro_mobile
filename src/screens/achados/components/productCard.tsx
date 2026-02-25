@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     transform: [{ scale: 0.97 }],
   },
 
-  // Image
   imageContainer: {
     width: "100%",
     height: 160,
@@ -82,7 +81,6 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
 
-  // Content
   content: {
     padding: 12,
     gap: 4,

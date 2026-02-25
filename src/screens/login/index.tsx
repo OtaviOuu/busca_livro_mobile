@@ -28,7 +28,7 @@ export default function Login() {
 
   const onSubmit = (data) => {
     const endpoint =
-      "https://initiatives-episode-deaths-driven.trycloudflare.com/api/json/users/sign-in?fields%5Buser%5D=id%2Cemail";
+      "https://sign-plants-qualified-bras.trycloudflare.com/api/json/users/sign-in?fields%5Buser%5D=id%2Cemail";
 
     const payload = {
       data: {

@@ -13,6 +13,6 @@ export const fetchBooks = async (): Promise<Book[]> => {
       "fields[book]": "id,title,price,image_url,url,inserted_at,updated_at",
     },
   });
-
+  console.log("Fetched books:", response.data.data);
   return response.data.data;
 };
