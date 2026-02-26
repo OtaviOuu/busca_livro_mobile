@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import ProductList from "./components/productList";
+import ProductList from "@/src/components/bookList";
 import useBooks from "@/src/hooks/useBooks";
 
 export default function Home() {

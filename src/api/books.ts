@@ -1,4 +1,3 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Book } from "@/src/types/types";
 import api_client from "./client";
 

@@ -10,7 +10,7 @@ export default function RootLayout() {
       <SafeAreaProvider>
         <Stack>
           <Stack.Screen
-            name="(tabs)"react-navigation/native
+            name="(tabs)"
             options={{
               headerShown: false,
             }}
