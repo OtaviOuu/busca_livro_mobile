@@ -4,7 +4,10 @@ export default function BookDetailLayout() {
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="[id]" options={{ headerTitle: "Detalhes" }} />
+      <Stack.Screen
+        name="[id]"
+        options={{ headerTitle: "Detalhes", headerShown: true }}
+      />
     </Stack>
   );
 }

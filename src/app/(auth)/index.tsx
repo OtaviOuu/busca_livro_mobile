@@ -14,7 +14,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { fetchUser } from "@/src/api/user";
 import { useAuthStore } from "@/src/hooks/useAuthStore";
-
+import { Link } from "expo-router";
 interface LoginFormData {
   email: string;
   password: string;
@@ -39,7 +39,6 @@ export default function Login() {
   } = useForm<LoginFormData>({
     resolver: yupResolver(loginSchema),
   });
-
   const { setUser } = useAuthStore();
 
   const mutation = useMutation({
@@ -72,6 +71,8 @@ export default function Login() {
     <SafeAreaView style={styles.safe}>
       <View style={styles.container}>
         <Text style={styles.heading}>Entrar</Text>
+        <Link href="/(tabs)/books">Livros</Link>
+
         <Text style={styles.heading}>{email} oi</Text>
 
         <View style={styles.field}>
