@@ -1,12 +1,18 @@
-import { Stack, Tabs } from "expo-router";
+import { Stack, Tabs, useRouter } from "expo-router";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { Feather } from "@expo/vector-icons";
+import { useAuthStore } from "../hooks/useAuthStore";
 
 const queryClient = new QueryClient();
 
 export default function RootLayout() {
+  const user = useAuthStore((state) => state.userData);
+  console.log(user);
+
+  const router = useRouter();
+
   return (
     <QueryClientProvider client={queryClient}>
       <SafeAreaProvider>
@@ -25,6 +31,14 @@ export default function RootLayout() {
           />
           <Tabs.Screen
             name="(tabs)/achados"
+            listeners={({ navigation }) => ({
+              tabPress: (e) => {
+                if (!user) {
+                  e.preventDefault();
+                  router.push("/(tabs)/perfil");
+                }
+              },
+            })}
             options={{
               tabBarIcon: ({ color, size }) => (
                 <Feather name="bookmark" size={24} color="black" />
@@ -36,6 +50,14 @@ export default function RootLayout() {
           />
           <Tabs.Screen
             name="(tabs)/perfil"
+            listeners={({ navigation }) => ({
+              tabPress: (e) => {
+                if (!user) {
+                  e.preventDefault();
+                  router.push("/(tabs)/perfil");
+                }
+              },
+            })}
             options={{
               tabBarIcon: ({ color, size }) => (
                 <Feather name="user" size={24} color="black" />

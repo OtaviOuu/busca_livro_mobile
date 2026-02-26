@@ -17,7 +17,21 @@ export interface User {
   };
 }
 
+export interface loginRequest {
+  attributes: {
+    email: string;
+    password: string;
+  };
+  type: string;
+  relationships: {};
+}
+
 export interface loginResponse {
+  attributes: {
+    email: string;
+  };
+  id: string;
+
   meta: {
     token: string;
   };

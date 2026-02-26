@@ -1,122 +1,29 @@
-import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Pressable,
+  StyleSheet,
+  ActivityIndicator,
+} from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation } from "@tanstack/react-query";
 import * as yup from "yup";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { loginResponse } from "@/src/types/types";
+import { fetchUser } from "@/src/api/user";
+import { useAuthStore } from "@/src/hooks/useAuthStore";
 
-export const loginSchema = yup.object({
-  username: yup
-    .string()
-    .min(3, "Username must be at least 3 characters")
-    .required("Username is required"),
-  password: yup
-    .string()
-    .min(5, "Password must be at least 5 characters")
-    .required("Password is required"),
-});
+interface LoginFormData {
+  email: string;
+  password: string;
+}
 
 export default function Login() {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(loginSchema),
-  });
-
-  const onSubmit = (data) => {
-    const endpoint =
-      "https://sign-plants-qualified-bras.trycloudflare.com/api/json/users/sign-in?fields%5Buser%5D=id%2Cemail";
-
-    const payload = {
-      data: {
-        attributes: {
-          email: data.username,
-          password: data.password,
-        },
-      },
-    };
-
-    const response = fetch(endpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/vnd.api+json",
-      },
-      body: JSON.stringify(payload),
-    })
-      .then((res) => res.json())
-      .then((json: loginResponse) => {
-        console.log("Response from server:", json);
-        const token = json.meta.token;
-        console.log("Login successful, token:", token);
-        AsyncStorage.setItem("authToken", token)
-          .then(() => console.log("Token salvo com sucesso"))
-          .catch((err) => console.error("Erro ao salvar token:", err));
-      })
-      .catch((error) => {
-        console.error("Login failed:", error);
-      });
-  };
-
   return (
     <SafeAreaView style={styles.safe}>
-      <View style={styles.container}>
-        <Text style={styles.heading}>Entrar</Text>
-
-        <View style={styles.field}>
-          <Text style={styles.label}>Usuário</Text>
-          <Controller
-            control={control}
-            name="username"
-            render={({ field: { onChange, value } }) => (
-              <TextInput
-                style={[styles.input, errors.username && styles.inputError]}
-                onChangeText={onChange}
-                value={value}
-                autoCapitalize="none"
-                placeholder="seu@email.com"
-                placeholderTextColor="#A78BFA"
-              />
-            )}
-          />
-          {errors.username && (
-            <Text style={styles.errorText}>{errors.username.message}</Text>
-          )}
-        </View>
-
-        <View style={styles.field}>
-          <Text style={styles.label}>Senha</Text>
-          <Controller
-            control={control}
-            name="password"
-            render={({ field: { onChange, value } }) => (
-              <TextInput
-                style={[styles.input, errors.password && styles.inputError]}
-                secureTextEntry
-                onChangeText={onChange}
-                value={value}
-                placeholder="••••••••"
-                placeholderTextColor="#A78BFA"
-              />
-            )}
-          />
-          {errors.password && (
-            <Text style={styles.errorText}>{errors.password.message}</Text>
-          )}
-        </View>
-
-        <Pressable
-          style={({ pressed }) => [
-            styles.button,
-            pressed && styles.buttonPressed,
-          ]}
-          onPress={handleSubmit(onSubmit)}
-        >
-          <Text style={styles.buttonText}>Entrar</Text>
-        </Pressable>
-      </View>
+      <Text>Profile</Text>
     </SafeAreaView>
   );
 }
